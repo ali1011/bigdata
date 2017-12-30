@@ -5,7 +5,8 @@ import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 import java.util.Arrays;
 /**
-main class of spark modul
+main class of spark module 
+test on hdfs
 **/
 public class Main {
    public static void main(String[]args){
