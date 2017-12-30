@@ -16,10 +16,10 @@ public class Main {
        // Create a Java version of the Spark Context
        JavaSparkContext sc = new JavaSparkContext(config);
 
-       // Load the text into a Spark RDD, which is a distributed representation of each line of text
+       // Load the text into a Spark RDD, which is a distributed representation of each line of text : RDD collection ef elements
        JavaRDD<String> textFile = sc.textFile("hdfs:///tmp/shakespeare.txt");
        JavaPairRDD<String, Integer> counts = textFile
-               .flatMap(s -> Arrays.asList(s.split("[ ,]")).iterator())
+               .flatMap(line -> Arrays.asList(line.split("[ ,]")).iterator())
                .mapToPair(word -> new Tuple2<>(word, 1))
                .reduceByKey((a, b) -> a + b);
        counts.foreach(p -> System.out.println(p));
