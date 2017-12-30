@@ -4,7 +4,9 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 import java.util.Arrays;
-
+/**
+main class of spark modul
+**/
 public class Main {
    public static void main(String[]args){
        //Create a SparkContext to initialize
