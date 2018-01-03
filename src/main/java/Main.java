@@ -11,6 +11,7 @@ test on hdfs
 public class Main {
    public static void main(String[]args){
        //Create a SparkContext to initialize
+       //Create a SparkContext to initialize
        SparkConf config = new SparkConf().setMaster("local").setAppName("Word Count");
 
        // Create a Java version of the Spark Context but old
