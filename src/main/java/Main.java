@@ -5,27 +5,24 @@ import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 import java.util.Arrays;
 /**
-main class of spark module 
-test on hdfs
+main class of spark modul
 **/
 public class Main {
    public static void main(String[]args){
        //Create a SparkContext to initialize
-       //Create a SparkContext to initialize
        SparkConf config = new SparkConf().setMaster("local").setAppName("Word Count");
 
-       // Create a Java version of the Spark Context but old
+       // Create a Java version of the Spark Context
        JavaSparkContext sc = new JavaSparkContext(config);
 
-       // Load the text into a Spark RDD, which is a distributed representation of each line of text : RDD collection ef elements
-       //JavaRDD<String> textFile = sc.textFile("hdfs:///tmp/shakespeare.txt");
-       JavaRDD<String> textFile = sc.textFile("src/main/resources/shakespeare.txt");
+       // Load the text into a Spark RDD, which is a distributed representation of each line of text....
+       JavaRDD<String> textFile = sc.textFile("hdfs:///tmp/shakespeare.txt");
        JavaPairRDD<String, Integer> counts = textFile
-               .flatMap(line -> Arrays.asList(line.split("[ ,]")).iterator())
+               .flatMap(s -> Arrays.asList(s.split("[ ,]")).iterator())
                .mapToPair(word -> new Tuple2<>(word, 1))
                .reduceByKey((a, b) -> a + b);
        counts.foreach(p -> System.out.println(p));
-       counts.saveAsTextFile("tmp/shakespeareWordCount");
+       counts.saveAsTextFile("hdfs:///tmp/shakespeareWordCount");
        System.out.println();
 
    }
