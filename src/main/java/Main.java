@@ -15,7 +15,7 @@ public class Main {
        // Create a Java version of the Spark Context
        JavaSparkContext sc = new JavaSparkContext(config);
 
-       // Load the text into a Spark RDD, which is a distributed representation of each line of text
+       // Load the text into a Spark RDD, which is a distributed representation of each line of text..
        JavaRDD<String> textFile = sc.textFile("hdfs:///tmp/shakespeare.txt");
        JavaPairRDD<String, Integer> counts = textFile
                .flatMap(s -> Arrays.asList(s.split("[ ,]")).iterator())
